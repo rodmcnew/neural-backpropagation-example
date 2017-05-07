@@ -22,9 +22,9 @@ def feed_forward(inputs):
     # Multiply the inputs by the weights in each neuron
     outputs = np.matmul(inputs, weights)
 
-    # Apply the sigmoid activation to each neuron's output
+    # Apply the sigmoid activation function to each neuron's output
     for o in range(len(outputs)):
-        outputs[o] = 1 / (1 + np.exp(-outputs[o]))
+        outputs[o] = 1 / (1 + np.exp(-outputs[o]))  # Sigmoid function
 
     return outputs
 
