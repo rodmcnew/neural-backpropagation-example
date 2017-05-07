@@ -15,36 +15,40 @@ def get_target_output(inputs):
     return result
 
 
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
+def feed_forward(inputs):
+    # Ensure the additional bias node always outputs "1"
+    inputs[input_count] = 1
+
+    # Multiply the inputs by the weights in each neuron
+    outputs = np.matmul(inputs, weights)
+
+    # Apply the sigmoid activation to each neuron's output
+    for o in range(len(outputs)):
+        outputs[o] = 1 / (1 + np.exp(-outputs[o]))
+
+    return outputs
+
+
+def back_propagate(inputs, outputs, target_output):
+    for neuron in range(output_count):
+        # Calculate this neuron's error gradient
+        output = outputs[neuron]
+        target_output = target_output[neuron]
+        neuron_error_gradient = (outputs - target_output) * output * (1 - outputs)
+
+        for weight in range(input_node_count):
+            # Update this weight to behave better in the future
+            weights[weight][neuron] += -learning_rate * inputs[weight] * neuron_error_gradient
 
 
 def main():
     for training_session in range(10000):
         inputs = np.random.randint(2, size=input_node_count)
-
-        # Forward pass
-        inputs[input_count] = 1  # Add the bias node
-
-        output_out = np.matmul(inputs, weights)
-        for o in range(len(output_out)):
-            output_out[o] = sigmoid(output_out[o])
-
         target_output = get_target_output(inputs)
-        error = np.subtract(output_out, target_output)
-        print('error', round(error[0], 2), 'output', round(output_out[0], 2), 'target', target_output[0])
-
-        # Learn
-        for o in range(output_count):
-
-            # Calculate this neuron's error gradient
-            output = output_out[o]
-            target_output = target_output[o]
-            neuron_error_gradient = (output_out - target_output) * output * (1 - output_out)
-
-            for i in range(input_node_count):
-                # Update this weight to behave better in the future
-                weights[i][o] += -learning_rate * inputs[i] * neuron_error_gradient
+        outputs = feed_forward(inputs)
+        back_propagate(inputs, outputs, target_output)
+        error = np.subtract(outputs, target_output)
+        print('error', round(error[0], 2), 'output', round(outputs[0], 2), 'target', target_output[0])
 
 
 main()
