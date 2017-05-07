@@ -47,13 +47,13 @@ def back_propagate(inputs, outputs, target_output):
 
 
 def main():
-    for training_session in range(10000):
+    for training_session in range(20000):
         inputs = np.random.randint(2, size=input_node_count)
         target_output = get_target_output(inputs)
         outputs = feed_forward(inputs)
         back_propagate(inputs, outputs, target_output)
         error = np.subtract(outputs, target_output)
-        print('error', round(error[0], 2), 'output', round(outputs[0], 2), 'target', target_output[0])
+        print('error:', abs(round(error[0], 2)))
 
 
 main()
