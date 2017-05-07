@@ -37,8 +37,8 @@ def back_propagate(inputs, outputs, target_output):
         error_gradient = (outputs - target_output) * output * (1 - outputs)
 
         for weight in range(input_node_count):
-            # Update this weight to behave better in the future
-            weights[weight][neuron] += -learning_rate * inputs[weight] * error_gradient
+            # Update this weight so that it descends down the error gradient
+            weights[weight][neuron] -= learning_rate * inputs[weight] * error_gradient
 
 
 def main():
