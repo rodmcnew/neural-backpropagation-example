@@ -36,8 +36,10 @@ def feed_forward(inputs):
 # Run the network backward to make it learn to produce better output in the future
 def back_propagate(inputs, outputs, target_output):
     for neuron in range(output_count):
+
         output = outputs[neuron]
         target_output = target_output[neuron]
+
         # Calculate the error gradient using the derivative of the sigmoid function
         error_gradient = (outputs - target_output) * output * (1 - outputs)
 
