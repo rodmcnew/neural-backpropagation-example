@@ -36,8 +36,7 @@ def main():
 
         target_output = get_target_output(inputs)
         error = np.subtract(output_out, target_output)
-        print('error', round(error[0], 2), 'output', round(output_out[0], 2), 'target', target_output[0], 'input',
-              inputs)
+        print('error', round(error[0], 2), 'output', round(output_out[0], 2), 'target', target_output[0])
 
         # Calc output neuron error gradients
         for o in range(output_count):
