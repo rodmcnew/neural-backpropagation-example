@@ -23,32 +23,37 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 
-for training_session in range(10000):
-    inputs = np.random.randint(2, size=input_node_count)
+def main():
+    for training_session in range(10000):
+        inputs = np.random.randint(2, size=input_node_count)
 
-    # Forward pass
-    inputs[input_count] = 1  # Add the bias node
+        # Forward pass
+        inputs[input_count] = 1  # Add the bias node
 
-    output_out = np.matmul(inputs, output_gradients)
-    for o in range(len(output_out)):
-        output_out[o] = sigmoid(output_out[o])
+        output_out = np.matmul(inputs, output_gradients)
+        for o in range(len(output_out)):
+            output_out[o] = sigmoid(output_out[o])
 
-    target_output = get_target_output(inputs)
-    error = np.subtract(output_out, target_output)
-    print('error', round(error[0], 2), 'output', round(output_out[0], 2), 'target', target_output[0], 'input',
-          inputs)
+        target_output = get_target_output(inputs)
+        error = np.subtract(output_out, target_output)
+        print('error', round(error[0], 2), 'output', round(output_out[0], 2), 'target', target_output[0], 'input',
+              inputs)
 
-    # Calc output neuron error gradients
-    for o in range(output_count):
-        output = output_out[o]
-        target_output = target_output[o]
-        output_neuron_gradients[o] = (output_out - target_output) * output * (1 - output_out)
+        # Calc output neuron error gradients
+        for o in range(output_count):
+            output = output_out[o]
+            target_output = target_output[o]
+            output_neuron_gradients[o] = (output_out - target_output) * output * (1 - output_out)
 
-    # Calc output weight updates
-    for o in range(output_count):
-        for i in range(input_node_count):
-            output_weight_updates[i][o] = -learning_rate * inputs[i] * output_neuron_gradients[o]
+        # Calc output weight updates
+        for o in range(output_count):
+            for i in range(input_node_count):
+                output_weight_updates[i][o] = -learning_rate * inputs[i] * output_neuron_gradients[o]
 
-    # Update output weights
-    for o in range(output_count):
-        for i in range(input_node_count):
+        # Update output weights
+        for o in range(output_count):
+            for i in range(input_node_count):
+                output_gradients[i][o] += output_weight_updates[i][o]
+
+
+main()
