@@ -8,9 +8,6 @@ learning_rate = 0.5
 input_node_count = input_count + 1  # Add a bias node
 weights = np.random.randn(output_count * input_node_count).reshape(input_node_count, output_count)
 
-neuron_gradients = np.zeros(output_count)
-weight_updates = np.zeros(shape=(input_node_count, output_count))
-
 
 def get_target_output(inputs):
     result = np.zeros(output_count)
