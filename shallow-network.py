@@ -5,9 +5,12 @@ output_count = 1
 learning_rate = 0.5
 
 input_node_count = input_count + 1  # Add a bias node
+
+# This will hold the weights for our neurons
 weights = np.random.randn(output_count * input_node_count).reshape(input_node_count, output_count)
 
 
+# The neural network will learn to behave like this function
 def get_target_output(inputs):
     result = np.zeros(output_count)
     if inputs[0] == 1:  # If the first input value is 1, return 1, else return 0
@@ -15,6 +18,7 @@ def get_target_output(inputs):
     return result
 
 
+# Run the network forward to convert inputs to outputs
 def feed_forward(inputs):
     # Ensure the additional bias node always outputs "1"
     inputs[input_count] = 1
@@ -29,6 +33,7 @@ def feed_forward(inputs):
     return outputs
 
 
+# Run the network backward to make it learn to produce better output in the future
 def back_propagate(inputs, outputs, target_output):
     for neuron in range(output_count):
         output = outputs[neuron]
