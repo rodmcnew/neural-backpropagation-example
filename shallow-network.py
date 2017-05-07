@@ -31,14 +31,14 @@ def feed_forward(inputs):
 
 def back_propagate(inputs, outputs, target_output):
     for neuron in range(output_count):
-        # Calculate this neuron's error gradient
         output = outputs[neuron]
         target_output = target_output[neuron]
-        neuron_error_gradient = (outputs - target_output) * output * (1 - outputs)
+        # Calculate the error gradient using the derivative of the sigmoid function
+        error_gradient = (outputs - target_output) * output * (1 - outputs)
 
         for weight in range(input_node_count):
             # Update this weight to behave better in the future
-            weights[weight][neuron] += -learning_rate * inputs[weight] * neuron_error_gradient
+            weights[weight][neuron] += -learning_rate * inputs[weight] * error_gradient
 
 
 def main():
