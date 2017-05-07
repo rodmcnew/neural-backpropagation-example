@@ -2,7 +2,6 @@
 import numpy as np
 
 input_count = 2
-hidden_count = 4
 output_count = 1
 learning_rate = 0.5
 
@@ -29,7 +28,7 @@ def main():
         inputs = np.random.randint(2, size=input_node_count)
 
         # Forward pass
-        inputs[input_count] = 1  # the bias node for the hidden layer
+        inputs[input_count] = 1  # Add the bias node
 
         output_out = np.matmul(inputs, output_gradients)
         for o in range(len(output_out)):
