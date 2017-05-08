@@ -2,11 +2,11 @@ from shallow_network import ShallowNetwork
 import random
 import numpy as np
 
-# We will train the network to return "1" only if the first input is "1"
+# Train the network to be an AND gate
 training_data = [
     [[0, 0], [0]],
     [[0, 1], [0]],
-    [[1, 0], [1]],
+    [[1, 0], [0]],
     [[1, 1], [1]]
 ]
 
