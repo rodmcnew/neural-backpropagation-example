@@ -2,7 +2,7 @@ from shallow_network import ShallowNetwork
 import random
 import numpy as np
 
-# Train the network to be an AND gate
+# Train the network to be an "AND" gate
 training_data = [
     [[0, 0], [0]],
     [[0, 1], [0]],
