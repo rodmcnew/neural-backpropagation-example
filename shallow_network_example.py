@@ -19,5 +19,3 @@ for training_session in range(20000):
     network.back_propagate(inputs, outputs, target_output)
     error = np.subtract(outputs, target_output)
     print('error:', abs(round(error[0], 2)))
-
-
