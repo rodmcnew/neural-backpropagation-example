@@ -37,7 +37,7 @@ class ShallowNetwork:
             target_output = target_output[neuron_i]
 
             # Calculate the error gradient using the derivative of the sigmoid function
-            error_gradient = (outputs - target_output) * output * (1 - outputs)
+            error_gradient = (output - target_output) * output * (1 - output)
 
             for input_i in range(self.input_node_count):
                 # Update this weight so that it descends down the error gradient
