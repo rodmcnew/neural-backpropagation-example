@@ -2,6 +2,7 @@ from shallow_network import ShallowNetwork
 import random
 import numpy as np
 
+# We will train the network to return "1" only if the first input is "1"
 training_data = [
     [[0, 0], [0]],
     [[0, 1], [0]],
