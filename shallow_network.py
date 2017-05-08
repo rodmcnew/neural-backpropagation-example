@@ -31,14 +31,14 @@ class ShallowNetwork:
         # Add the additional bias node that always outputs "1"
         inputs = np.append(inputs, [1])
 
-        for neuron in range(self.output_count):
+        for neuron_i in range(self.output_count):
 
-            output = outputs[neuron]
-            target_output = target_output[neuron]
+            output = outputs[neuron_i]
+            target_output = target_output[neuron_i]
 
             # Calculate the error gradient using the derivative of the sigmoid function
             error_gradient = (outputs - target_output) * output * (1 - outputs)
 
-            for weight in range(self.input_node_count):
+            for input_i in range(self.input_node_count):
                 # Update this weight so that it descends down the error gradient
-                self.weights[weight][neuron] -= self.learning_rate * inputs[weight] * error_gradient
+                self.weights[input_i][neuron_i] -= self.learning_rate * inputs[input_i] * error_gradient
