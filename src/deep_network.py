@@ -68,7 +68,7 @@ class DeepNetwork:
                 delta = - self.learning_rate * self.hidden_outputs[input_i] * error_gradient
                 self.output_weight_deltas[input_i][neuron_i] = delta
 
-            # Save this so we can use it in the next laye
+            # Save this so we can use it in the hidden layer delta calculation
             output_neuron_error_gradients[neuron_i] = error_gradient
 
         # Calculate deltas for hidden neurons
