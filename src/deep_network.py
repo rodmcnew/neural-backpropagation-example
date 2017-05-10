@@ -67,7 +67,6 @@ class DeepNetwork:
                 # Update this weight so that it descends down the error gradient
                 delta = - self.learning_rate * self.hidden_outputs[input_i] * error_gradient
                 self.output_weight_deltas[input_i][neuron_i] = delta
-                # self.output_weights[input_i][neuron_i] += delta
 
             # Save this so we can use it in the next laye
             output_neuron_error_gradients[neuron_i] = error_gradient
@@ -79,8 +78,6 @@ class DeepNetwork:
                 e_wrt_oj += output_neuron_error_gradients[next_neuron_i] * self.output_weights[neuron_i][next_neuron_i]
 
             output = self.hidden_outputs[neuron_i]
-            # print(output)
-            # print('e_wrt_oj', e_wrt_oj, 'slope', self.activation_function.get_slope(output))
 
             # Calculate the error gradient using the derivative of the activation function
             error_gradient = e_wrt_oj * self.activation_function.get_slope(output)
@@ -89,8 +86,6 @@ class DeepNetwork:
                 # Update this weight so that it descends down the error gradient
                 delta = -self.learning_rate * inputs[input_i] * error_gradient
                 self.hidden_weight_deltas[input_i][neuron_i] = delta
-                # print(delta)
-                # self.hidden_weights[input_i][neuron_i] += delta
 
         # Apply deltas for output neurons
         for neuron_i in range(self.output_count):

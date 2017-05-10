@@ -5,7 +5,7 @@ from deep_network import DeepNetwork
 
 from activation_functions import Sigmoid, LeakyRelu
 
-# Train the network to be a binary "XOR" function
+# Train the network to behave like a binary "XOR" function
 training_data = [
     [[0, 0], [0]],
     [[0, 1], [1]],
