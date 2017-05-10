@@ -5,7 +5,7 @@ from shallow_network import ShallowNetwork
 
 from activation_functions import Sigmoid, LeakyRelu
 
-# Train the network to behave like an "AND" gate
+# Train the network to be a binary "AND" function
 training_data = [
     [[0, 0], [0]],
     [[0, 1], [0]],
