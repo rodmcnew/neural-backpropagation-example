@@ -65,7 +65,7 @@ class DeepNetwork:
 
             for input_i in range(self.hidden_node_count):
                 # Update this weight so that it descends down the error gradient
-                delta = - self.learning_rate * self.hidden_outputs[input_i] * error_gradient
+                delta = -self.learning_rate * self.hidden_outputs[input_i] * error_gradient
                 self.output_weight_deltas[input_i][neuron_i] = delta
 
             # Save this so we can use it in the hidden layer delta calculation
