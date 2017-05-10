@@ -11,18 +11,17 @@ class DeepNetwork:
         self.input_node_count = input_count + 1  # Add a bias node
         self.hidden_node_count = hidden_count + 1  # Add a bias node
 
-        # Create an array of random weights for the hidden neurons
+        # Holds the weights of the neurons
         self.hidden_weights = np.random.randn(self.input_node_count * hidden_count)
         self.hidden_weights = self.hidden_weights.reshape(self.input_node_count, hidden_count)
-
-        self.hidden_weight_deltas = np.zeros_like(self.hidden_weights)
-
-        # Create an array of random weights for the output neurons
         self.output_weights = np.random.randn(self.hidden_node_count * output_count)
         self.output_weights = self.output_weights.reshape(self.hidden_node_count, output_count)
 
+        # Holds the weight updates during back-propagation
+        self.hidden_weight_deltas = np.zeros_like(self.hidden_weights)
         self.output_weight_deltas = np.zeros_like(self.output_weights)
 
+        # Holds the output from the hidden layer which is needed during back-propagation
         self.hidden_outputs = np.zeros(self.hidden_node_count)
 
     # Run the network forward to convert inputs to outputs
@@ -58,7 +57,6 @@ class DeepNetwork:
 
         # Calculate deltas for output neurons
         for neuron_i in range(self.output_count):
-
             output = outputs[neuron_i]
             target_output = target_output[neuron_i]
 
@@ -76,7 +74,6 @@ class DeepNetwork:
 
         # Calculate deltas for hidden neurons
         for neuron_i in range(self.hidden_count):
-
             e_wrt_oj = 0
             for next_neuron_i in range(self.output_count):
                 e_wrt_oj += output_neuron_error_gradients[next_neuron_i] * self.output_weights[neuron_i][next_neuron_i]
