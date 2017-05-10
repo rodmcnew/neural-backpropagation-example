@@ -13,8 +13,8 @@ training_data = [
     [[1, 1], [0]]
 ]
 
-# network = DeepNetwork(2, 5, 1, LeakyRelu(), 0.03)
-network = DeepNetwork(2, 5, 1, Sigmoid(), 0.5)
+# network = DeepNetwork(2, 4, 1, LeakyRelu(), 0.03)
+network = DeepNetwork(2, 4, 1, Sigmoid(), 0.5)
 
 for training_session in range(20000):
     training_set = random.choice(training_data)
