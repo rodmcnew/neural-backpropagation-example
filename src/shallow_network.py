@@ -2,7 +2,8 @@ import numpy as np
 
 
 class ShallowNetwork:
-    def __init__(self, input_count, output_count, learning_rate):
+    def __init__(self, input_count, output_count, activation_function, learning_rate):
+        self.activation_function = activation_function
         self.input_count = input_count
         self.output_count = output_count
         self.learning_rate = learning_rate
@@ -20,9 +21,9 @@ class ShallowNetwork:
         # Multiply the inputs by the weights in each neuron
         outputs = np.matmul(inputs, self.weights)
 
-        # Apply the sigmoid activation function to each neuron's output
+        # Apply the activation function to each neuron's output
         for o in range(len(outputs)):
-            outputs[o] = 1 / (1 + np.exp(-outputs[o]))  # Sigmoid function
+            outputs[o] = self.activation_function.get_y(outputs[o])
 
         return outputs
 
@@ -36,8 +37,8 @@ class ShallowNetwork:
             output = outputs[neuron_i]
             target_output = target_output[neuron_i]
 
-            # Calculate the error gradient using the derivative of the sigmoid function
-            error_gradient = (output - target_output) * output * (1 - output)
+            # Calculate the error gradient using the derivative of the activation function
+            error_gradient = (output - target_output) * self.activation_function.get_slope(output)
 
             for input_i in range(self.input_node_count):
                 # Update this weight so that it descends down the error gradient
