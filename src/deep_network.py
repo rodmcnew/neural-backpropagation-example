@@ -49,7 +49,7 @@ class DeepNetwork:
         return outputs
 
     # Run the network backward to make it learn to produce better output in the future
-    def back_propagate(self, inputs, outputs, target_output):
+    def back_propagate(self, inputs, outputs, target_outputs):
         # Add the additional bias node that always outputs "1"
         inputs = np.append(inputs, [1])
 
@@ -58,7 +58,7 @@ class DeepNetwork:
         # Calculate deltas for output neurons
         for neuron_i in range(self.output_count):
             output = outputs[neuron_i]
-            target_output = target_output[neuron_i]
+            target_output = target_outputs[neuron_i]
 
             # Calculate the error gradient using the derivative of the activation function
             error_gradient = (output - target_output) * self.activation_function.get_slope(output)
