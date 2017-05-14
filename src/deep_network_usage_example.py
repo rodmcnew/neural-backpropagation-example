@@ -8,9 +8,9 @@ from activation_functions import Sigmoid, LeakyRelu
 # Train the network to give us the XOR on neuron 0 and the OR on neuron 1
 training_data = [
     [[0, 0], [0, 0]],
-    [[0, 1], [1, 0]],
-    [[1, 0], [1, 0]],
-    [[1, 1], [1, 1]]
+    [[0, 1], [1, 1]],
+    [[1, 0], [1, 1]],
+    [[1, 1], [0, 1]]
 ]
 
 # network = DeepNetwork(2, 4, 1, LeakyRelu(), 0.03)
