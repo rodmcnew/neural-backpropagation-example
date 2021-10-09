@@ -1,4 +1,4 @@
-The purpose of this repo is to show an extremly simple example of how neural netowork backpropagation can be coded.
+This repo shows an extremly simple example of how neural netowork backpropagation can be coded.
 
 See `src/shallow_network.py` for the simplist example. This is a shallow network so it contains no hidden layers.
 
